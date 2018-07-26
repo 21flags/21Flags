@@ -1,0 +1,53 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+Debrief
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Thank you for participating in this experiment. You have hopefully contributed to some very interesting research.
+</p>
+
+<p>
+    Please keep the following information to yourself, as sharing it may confound results of people who have not participated in this experiment yet
+</p>
+
+<p>
+    The game that you have just played, the 21 flags game, is a game of strategy. When played to perfection, a player will
+    be able to backward induct, meaning to reason backward through a series of mapped out game play, in order to reason the correct strategy
+    to win the game. This can even be done from the first move.
+</p>
+
+<p>
+    What we have tried to observe in this experiment is how well you played based on a treatment you were placed in, and this had any effect on your
+    motivation to win, your perceived understanding of the game, and your overall game play. For example, you were randomly placed in the
+    {% for p in player_treatment %}
+
+    {% if p.incentivized %} Positive frame of the game. For each win, you received 100 points. How did this gain drive your motivation, perceived understanding and learning as you played the game?
+    {% else %} Negative frame of the game. For each loss, you incurred a loss of 100 points from your initial endowment 0f 1500 points. How did this loss drive your motivation, percieved understanding and learning as you played the game?  {% endif %}
+        {% endfor %}
+    Ultimately, after compiling all the data, we hope to see how the effect that you were placed in, compared with the other.
+</p>
+
+<p>
+    We do hope that you enjoyed this experiment, and better yet, learned something from it. If you would like to lear more, please feel free to reach out to Myself,
+    Daniel Saxon, primary researcher, at daniel.saxon@city.ac.uk or my supervisor, Sergiu Ungureanu at sergiu.ungureanu.2@city.ac.uk.
+
+</p>
+
+<p>
+    Thank you again for your time, and have a pleasant day.
+
+</p>
+
+<p>
+    Approved by the Ethics Review Board of City, University of London. Ethics Code:
+
+</p>
+
+<button class="otree-btn-next btn btn-primary">Finish and Submit</button>
+
+{% endblock %}

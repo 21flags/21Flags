@@ -1,0 +1,38 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+21 Flags Game
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Welcome to the 21 Flags game, Thai 21 or a version of the Nim game.
+    The game is rather simple: There are 21 flags, which each player will remove during their turn.
+    You must select one, two, or three flags to remove during each turn, with the objective of picking up the last flag.
+    You will be alternating turns with the computer, who shares the same objective.
+    The player to pick up the last flag will be the winner.
+</p>
+
+<p>
+    You will be playing 15 rounds of this game. After each round of play, you will be shown how many points you have in the results page.
+            {% for p in player_in_all_rounds %}
+
+    {% if p.incentivized %} If you win, you will receive 100 points {% else %} If you lose, you will lose 100 points from your initial endowment of 1500 points  {% endif %}
+        {% endfor %}
+
+    At the end, the points along with your wins will be measured to determine how well you played the game
+
+</p>
+
+<p>
+    To start, you will make the first move.
+</p>
+
+
+
+
+<button class="otree-btn-next btn btn-primary">Begin Playing</button>
+
+{% endblock %}

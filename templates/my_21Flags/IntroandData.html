@@ -1,0 +1,32 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+    Welcome Page
+{% endblock %}
+
+
+{%block content%}
+<p> Welcome to the Experiment. I would like to thank you very much for your time and willingness to participate.</p>
+
+<p> Before we begin with the experiment, I will need to collect some data for analytical statistics which I will use later in my analysis.
+    I can assure you that all data that is collected will be safe and secure, and that even I will not know the identity of each
+    participant, as you will be logged by your participant ID, and nothing else. </p>
+
+    <p> If for whatever reason you decide that you no longer wish to proceed, please exit now. If not, below are some data that
+    I would ask you to provide</p>
+
+
+    {% formfield player.age label = "How old are you?" %}
+    {% formfield player.sex label = "Are you of the male or female sex?" %}
+    {% formfield player.education label = "What is your current level of Educational attainment as of the filling out of this survey?"%}
+    {% formfield player.income label = "Please choose the Income bracket which you fall into"%}
+
+
+
+<button class="otree-btn-next btn btn-primary">Next</button>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,44 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+Exit Questions
+{% endblock %}
+
+{% block content %}
+<p> Below are your results by your round, and your end endowment</p>
+
+ <table class="table">
+        <tr>
+            <th>Round</th>
+            <th>Player and outcome</th>
+        </tr>
+        {% for p in player_in_all_rounds %}
+            <tr>
+                <td>{{ p.round_number }}</td>
+                <td>
+                    You {% if p.is_winner %} won
+                    {% else %} lost {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+<p>After {{ total_wins}} wins, your total endowment is {{ total_endowment }}</p>
+<p>
+    Thank you for your participation. please respond to these final questions.
+
+</p>
+
+    {% formfield player.understanding label = "On a scale of 1-7, 1 being not well, and 7 being perfectly, how well did you understand how to win the game by the end?" %}
+
+    {% formfield player.desire label = "How strong of a desire would you say that you had to win the game at the end, on a scale of 1-7, 1 being 'somewhat of a desire' and 7 being a 'need to win'?" %}
+
+
+
+
+
+<button class="otree-btn-next btn btn-primary">End Experiment and Head to Debrief</button>
+
+
+{% endblock %}
