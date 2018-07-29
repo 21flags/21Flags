@@ -1,0 +1,335 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+
+
+{% block title %}
+21 Flag Game
+{% endblock %}
+
+
+
+
+{% block styles %}
+
+
+<style TYPE="text/css">
+
+.debut {
+	FONT SIZE=14;  background-color: red; FONT-WEIGHT: bold; COLOR: white; FONT-FAMILY: Arial }
+.b2t { background-color: lightblue; font-weight: bold; }
+.b3t {
+background-color: pink; font-weight: bold;}
+</style>
+
+
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+
+<SCRIPT LANGUAGE="JavaScript">
+
+var flag1 = new Array(22)
+flag1[0] = ""
+flag1[1] = "I"
+flag1[2] = "I I"
+flag1[3] = "I I I"
+flag1[4] = "I I I I"
+flag1[5] = "I I I I I"
+flag1[6] = "I I I I I I"
+flag1[7] = "I I I I I I I"
+flag1[8] = "I I I I I I I I"
+flag1[9] = "I I I I I I I I I"
+flag1[10] = "I I I I I I I I I I"
+flag1[11] = "I I I I I I I I I I I"
+flag1[12] = "I I I I I I I I I I I I"
+flag1[13] = "I I I I I I I I I I I I I"
+flag1[14] = "I I I I I I I I I I I I I I"
+flag1[15] = "I I I I I I I I I I I I I I I"
+flag1[16] = "I I I I I I I I I I I I I I I I"
+flag1[17] = "I I I I I I I I I I I I I I I I I"
+flag1[18] = "I I I I I I I I I I I I I I I I I I"
+flag1[19] = "I I I I I I I I I I I I I I I I I I I"
+flag1[20] = "I I I I I I I I I I I I I I I I I I I I"
+flag1[21] = "I I I I I I I I I I I I I I I I I I I I I"
+
+
+
+var tuxt1 = ""
+var wordscore = ""
+var text2 = ""
+var nflag = 21
+var nchose = 0
+var cchose = 0
+var cheatr = 0
+var cheat2 = 0
+var move = 0;
+
+
+
+
+
+function updateLetters() {
+	tuxt1 = flag1[nflag]
+	document.myForm.reset()
+	document.getElementById("cnumer").innerHTML = " <B>Number of Flags = " + nflag + "</B>"
+	document.getElementById("counter").innerHTML = tuxt1
+	document.myForm.txtNumber2.focus()
+	}
+
+
+
+
+
+
+
+
+function updateWlear() {
+	document.getElementById("wordscore").innerHTML = " "
+	document.getElementById("wnscore").innerHTML = " "
+	txtNumber2 = " "
+	}
+
+
+
+function MoveCount() {
+    if (cheatr == 0 && cheat2 == 0) {
+        move += 1;
+        document.getElementById("id_moves").value = move
+    }
+    }
+
+
+
+
+
+function GetNumbera(form) {
+	text2 = stripBad(form.txtNumber2.value)
+	nchose = parseInt(form.txtNumber2.value)
+	if (text2 == ""){
+	document.getElementById("wordscore").innerHTML = "<B>Type 1, 2 or 3 inside the box, then Click for Results</B>"
+	}
+	else if (cheat2 == 1){
+	document.getElementById("wordscore").innerHTML = "<B>Click for Computer's turn!</B>"
+	}
+	else if ((text2 == "1") || (text2 == "2") || (text2 == "3")) {
+	nchose = parseInt(text2)
+	nflag = nflag - nchose
+	cheatr = 1
+	cheat2 = 1
+	document.myForm.reset()
+	document.getElementById("cnumer").innerHTML = "<B>Number of Flags Remaining = " + nflag + "&nbsp;&nbsp;&nbsp;" + "&nbsp;&nbsp;&nbsp;You Removed = " + nchose + "</B>"
+        if (move == 1){ document.getElementById("id_flags_remaining_player_1").value = nflag;}
+        else if (move == 2){ document.getElementById("id_flags_remaining_player_2").value = nflag;}
+        else if (move == 3){ document.getElementById("id_flags_remaining_player_3").value = nflag;}
+        else if (move == 4){ document.getElementById("id_flags_remaining_player_4").value = nflag;}
+        else if (move == 5){ document.getElementById("id_flags_remaining_player_5").value = nflag;}
+        else if (move == 6){ document.getElementById("id_flags_remaining_player_6").value = nflag;}
+        else if (move == 7){ document.getElementById("id_flags_remaining_player_7").value = nflag;}
+        else if (move == 8){ document.getElementById("id_flags_remaining_player_8").value = nflag;}
+        else if (move == 9){ document.getElementById("id_flags_remaining_player_9").value = nflag;}
+        else if (move == 10){ document.getElementById("id_flags_remaining_player_10").value = nflag;}
+        else if (move == 11){ document.getElementById("id_flags_remaining_player_11").value = nflag;}
+        else if (move == 12){ document.getElementById("id_flags_remaining_player_12").value = nflag;}
+
+
+    tuxt1 = flag1[nflag]
+	document.getElementById("counter").innerHTML = tuxt1
+        if (nflag <= 0){
+		document.getElementById("cnumer").innerHTML = "<B>Number of Flags Remaining = " + nflag + "&nbsp;&nbsp;&nbsp;" + "&nbsp;&nbsp;&nbsp;You Removed = " + nchose + "</B> <FONT SIZE=4 COLOR='#FF0000'><BR>You Won! Click Next Round</FONT>"
+             if (move == 4){ document.getElementById("id_flags_remaining_player_4").value = nflag;}
+            else if (move == 5){ document.getElementById("id_flags_remaining_player_5").value = nflag;}
+            else if (move == 6){ document.getElementById("id_flags_remaining_player_6").value = nflag;}
+            else if (move == 7){ document.getElementById("id_flags_remaining_player_7").value = nflag;}
+            else if (move == 8){ document.getElementById("id_flags_remaining_player_8").value = nflag;}
+            else if (move == 9){ document.getElementById("id_flags_remaining_player_9").value = nflag;}
+            else if (move == 10){ document.getElementById("id_flags_remaining_player_10").value = nflag;}
+            else if (move == 11){ document.getElementById("id_flags_remaining_player_11").value = nflag;}
+            else if (move == 11){ document.getElementById("id_flags_remaining_player_11").value = nflag;}
+            else if (move == 12){ document.getElementById("id_flags_remaining_player_12").value = nflag;}
+
+	}
+	}
+	else {
+	document.getElementById("wordscore").innerHTML = "Type 1, 2 or 3 inside the box, then Click for Results"
+	}
+	}
+
+
+
+
+
+
+
+function GetNumberc() {
+    if (nflag == 3) {
+	cchose = 3
+	}
+	else if (nflag == 2) {
+	cchose = 2
+	}
+	else if (nflag == 1) {
+	cchose = 1
+	}
+
+	else {
+       cchose = Math.floor(Math.random()*3)+1;
+	}
+	nflag = nflag - cchose
+	if (nflag == 0) {
+		document.getElementById("cnumer").innerHTML = "<B>Number of Flags Remaining = " + nflag + " Computer removed = " + cchose + "</B> <FONT SIZE=4 COLOR='#FF0000'><BR>Computer Won! Click Next Round</FONT>"
+	tuxt1 = flag1[nflag]
+	document.getElementById("counter").innerHTML = tuxt1
+
+	}
+	else {
+	document.myForm.reset()
+	document.getElementById("cnumer").innerHTML = "<B>Number of Flags Remaining = " + nflag + "&nbsp;&nbsp;&nbsp;" + " Computer removed = " + cchose + "</B>"
+	tuxt1 = flag1[nflag]
+	cheatr = 0
+	cheat2 = 0
+	document.getElementById("counter").innerHTML = tuxt1
+	document.myForm.txtNumber2.focus()
+	}
+	}
+
+
+
+
+
+
+function GetNumbert() {
+	if (cheatr == 0) {
+	document.getElementById("wordscore").innerHTML = "Type 1, 2 or 3 inside the box, then Click for Results"
+	}
+	else if (nflag <= 0){
+	document.getElementById("wordscore").innerHTML = "Click Start a New Game!"
+	}
+	else {
+	GetNumberc()
+	}
+	}
+
+
+
+
+
+
+
+function stripBad(string) {
+    for (var i=0, output='', valid="123"; i<string.length; i++)
+       if (valid.indexOf(string.charAt(i)) != -1)
+          output += string.charAt(i)
+    return output;
+}
+
+
+
+</SCRIPT>
+
+
+
+
+
+
+    <FORM NAME="myForm" >
+
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block content %}
+
+<P> You are the first to move; Put the number of flags that you wish to remove into the box, and Click "Remove flags"</P>
+<P> After this, you should see the number of flags,  the remaining number, and the number of flags you removed displayed</P>
+<P> After your move, it is the computers turn; You will be required to Click "Computer's Move" in order for the computers move</P>
+<P> Following this the game will continue as such, until the last flag is removed</P>
+<P> 4. If you do not see the the "Enter the number of flags :" box then click the "Click to Continue" button</P>
+<P> 5. When the last flag it removed, Click "Next Round"<BR>
+
+<p>You are currently playing round : <b> {{round_number}} </b> </p>
+
+
+{{round.number}}
+
+
+<BODY onload=updateLetters()>
+
+
+<TABLE BORDER=0>
+<TR><TD><FONT SIZE=5 COLOR="#FF0000" FACE="ARIAL"><DIV id=counter>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</DIV></FONT></TD>
+</TR>
+<TR><TD>&nbsp;&nbsp;&nbsp;</TD>
+<TD cVALIGN=top><DIV id=cnumer>&nbsp;&nbsp;&nbsp;</DIV></TD></TR>
+
+<TR><TD colSpan=2>
+
+    Enter the number of flags you want to remove (1, 2 or 3): <INPUT class=delet TYPE="text" NAME="txtNumber2" SIZE=3 /><BR><BR>
+
+<INPUT class=b3t type="button" VALUE="Remove Flags" onclick="MoveCount();GetNumbera(this.form);" />
+
+<INPUT type="hidden" name="flags_remaining_player_1" id="id_flags_remaining_player_1"/>
+<INPUT type="hidden" name="flags_remaining_player_2" id="id_flags_remaining_player_2"/>
+<INPUT type="hidden" name="flags_remaining_player_3" id="id_flags_remaining_player_3"/>
+<INPUT type="hidden" name="flags_remaining_player_4" id="id_flags_remaining_player_4"/>
+<INPUT type="hidden" name="flags_remaining_player_5" id="id_flags_remaining_player_5"/>
+<INPUT type="hidden" name="flags_remaining_player_6" id="id_flags_remaining_player_6"/>
+<INPUT type="hidden" name="flags_remaining_player_7" id="id_flags_remaining_player_7"/>
+<INPUT type="hidden" name="flags_remaining_player_8" id="id_flags_remaining_player_8"/>
+<INPUT type="hidden" name="flags_remaining_player_9" id="id_flags_remaining_player_9"/>
+<INPUT type="hidden" name="flags_remaining_player_10" id="id_flags_remaining_player_10"/>
+<INPUT type="hidden" name="flags_remaining_player_11" id="id_flags_remaining_player_11"/>
+<INPUT type="hidden" name="flags_remaining_player_12" id="id_flags_remaining_player_12"/>
+
+
+<INPUT type="hidden" name="moves" id="id_moves"/>
+
+
+
+
+<TR><TD><FORM><INPUT onclick= "GetNumbert()"  class=b2t type=button value="Computer's Move"></FORM></TD></TR>
+</TABLE>
+
+
+
+
+
+
+         <h4>Round history</h4>
+        <table class="table">
+            <tr>
+                <th>Round</th>
+                <th>Winner and Current Endowment</th>
+
+            </tr>
+            {% for p in player_in_previous_rounds %}
+                <tr>
+                    <td>{{ p.round_number }}</td>
+                    <td>You {% if p.is_winner %} won {% else %} lost {% endif %}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+ <p>
+        Your current endowment is {{ current_endowment }}.
+    </p>
+
+    {% formfield player.is_winner label = "Please report whether you were the winner or not: The game tells you above" %}
+
+
+{{ form.errors }}
+
+<button class="otree-btn-next btn btn-primary"> Review the Results</button>
+
+{% endblock %}
+
+
